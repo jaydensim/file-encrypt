@@ -1,0 +1,17 @@
+{
+  "name": "file-encrypt",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.8.0"
+  },
+  "dependencies": {
+    "@fontsource/manrope": "^4.5.6",
+    "crypto-js": "^4.1.1"
+  }
+}

@@ -1,0 +1,271 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+  --app-functional-width: 400px;
+
+  --standard-radius: 1rem;
+  --tight-radius: 0.5rem;
+
+  --standard-bgcolor-element: #0f1214;
+  --standard-bgcolor-page: #010101;
+
+  --standard-color-blue: #0060df;
+  --standard-color-red: #9f504b;
+  --standard-color-green: #356b44;
+}
+* {
+  margin: 0;
+  user-select: none;
+}
+body {
+  overflow-x: hidden !important;
+}
+
+html,
+body,
+#app {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  isolation: isolate;
+  font-family: "ManropeVariable", "Manrope", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+    sans-serif;
+  font-variation-settings: "wght" 400;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  background-color: var(--standard-bgcolor-page);
+  color: #ffffff;
+}
+.arctic {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: 3rem;
+  z-index: 999999999;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  font-weight: 800;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.03em;
+}
+p {
+  overflow-wrap: break-word;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.app-functional,
+.app-functional--forms,
+.app-nonfunctional--navy-inputbar {
+  display: flex;
+  flex-flow: column;
+  gap: 5rem;
+}
+.app-nonfunctional--navy-inputbar {
+  gap: 2px;
+}
+.app-functional--forms {
+  gap: 2rem;
+}
+.app-nonfunctional--navy-input-overflowChecker {
+  border-radius: var(--standard-radius) var(--standard-radius) 0 0;
+  overflow: hidden;
+}
+
+.app-functional--navy-inputArea {
+  width: var(--app-functional-width);
+  height: 120px;
+  border: none;
+  background-color: var(--standard-bgcolor-element);
+  color: #fff;
+  padding: 5px 10px;
+  outline: none !important;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-functional--navy-inputArea div {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease;
+}
+.app-functional--navy-inputArea:active div {
+  transform: translateY(5px);
+  transition: 0.05s ease;
+}
+
+.app-functional--navy-input {
+  width: var(--app-functional-width);
+  height: calc(var(--standard-radius) * 2);
+  border-radius: var(--standard-radius);
+  border: none;
+  background-color: var(--standard-bgcolor-element);
+  color: #fff;
+  padding: 5px 10px;
+  user-select: auto;
+  outline: none;
+}
+.app-functional--navy-input-bar {
+  border-radius: 0 0 var(--standard-radius) var(--standard-radius);
+  padding: 5px 10px 8px 10px;
+}
+
+.app-functional--navy-input.app-functional--navy-input-bar:focus {
+  border-radius: var(--tight-radius);
+  outline: 2px solid var(--standard-color-blue);
+  box-shadow: 0 0 var(--standard-radius) var(--standard-radius)
+    var(--standard-bgcolor-page);
+  z-index: 100;
+}
+
+.app-nonfunctional--navy-input-overflowChecker:focus-within,
+[data-isDropping="true"] .app-nonfunctional--navy-input-overflowChecker {
+  outline: 2px solid var(--standard-color-blue);
+  border-radius: var(--tight-radius);
+  box-shadow: 0 0 var(--standard-radius) var(--standard-radius)
+    var(--standard-bgcolor-page);
+  z-index: 100;
+}
+
+.app-nonfunctional--navy-butterbar {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.app-nonfunctional--navy-butterbar .app-nonfunctional--navy-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.app-nonfunctional--navy-butterbar .app-nonfunctional--navy-container p {
+  font-variation-settings: "wght" 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.app-functional--navy-icon {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.app-functional--navy-button {
+  height: calc(var(--standard-radius) * 2);
+  border-radius: var(--standard-radius);
+  background-color: var(--standard-bgcolor-element);
+  border: 2px solid var(--standard-bgcolor-element);
+  cursor: pointer;
+  font-variation-settings: "wght" 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 5px 10px;
+  color: #fff;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.app-functional--navy-button:hover {
+  border: 2px solid var(--standard-color-blue);
+}
+.app-functional--navy-button--circle {
+  padding: 5px;
+  aspect-ratio: 1/1;
+  width: calc(var(--standard-radius) * 2);
+  justify-content: center;
+}
+.app-functional--navy-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border: 2px solid var(--standard-bgcolor-element) !important;
+}
+[data-appStatus="2"] .app-functional--navy-button {
+  opacity: 0.5;
+  cursor: wait;
+  border: 2px solid var(--standard-bgcolor-element) !important;
+}
+
+.app-functional--navy-inputSurface {
+  display: none;
+}
+.app-functional--navy-inputArea div {
+  pointer-events: none;
+}
+.app-functional--navy-inputArea h3 {
+  font-variation-settings: "wght" 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-top: 1rem;
+}
+.app-functional--navy-inputArea h3:first-child {
+  margin-top: 0px;
+}
+.app-functional--navy-inputArea p {
+  font-variation-settings: "wght" 400;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+}
+.app-functional--navy-button-validityEncrypt,
+.app-functional--navy-button-validityDecrypt,
+.app-functional--navy-button-validityDownload {
+  display: none;
+}
+
+[data-mode="encrypt"] .app-functional--navy-button-validityEncrypt {
+  display: flex;
+}
+[data-mode="decrypt"] .app-functional--navy-button-validityDecrypt {
+  display: flex;
+}
+[data-mode="download"] .app-functional--navy-button-validityDownload {
+  display: flex;
+}

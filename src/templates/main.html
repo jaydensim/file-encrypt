@@ -1,0 +1,64 @@
+<main class="main">
+  <section class="app-functional">
+    <h1>File Encrypt</h1>
+    <div class="app-functional--forms">
+      <div class="app-nonfunctional--navy-inputbar">
+        <div class="app-nonfunctional--navy-input-overflowChecker">
+          <button
+            class="app-functional--navy-inputArea"
+            data-functional="dropper"
+          ></button>
+          <input
+            class="app-functional--navy-inputSurface"
+            data-functional="input"
+            required="required"
+            type="file"
+          />
+        </div>
+        <input
+          class="app-functional--navy-input app-functional--navy-input-bar"
+          data-functional="key"
+          placeholder="Key"
+          required="required"
+          spellcheck="false"
+        />
+      </div>
+      <div class="app-nonfunctional--navy-butterbar">
+        <div class="app-nonfunctional--navy-container">
+          <button
+            class="app-functional--navy-button app-functional--navy-button-validityPending app-functional--navy-button-validityEncrypt"
+            data-functional="encrypt"
+          >
+            ENCRYPT
+          </button>
+          <button
+            class="app-functional--navy-button app-functional--navy-button-validityPending app-functional--navy-button-validityDecrypt"
+            data-functional="decrypt"
+          >
+            DECRYPT
+          </button>
+          <button
+            class="app-functional--navy-button app-functional--navy-button-validityPending app-functional--navy-button-validityDownload"
+            data-functional="download"
+          >
+            DOWNLOAD
+          </button>
+        </div>
+        <div class="app-nonfunctional--navy-container">
+          <p class="app-functional--navy-status" data-functional="status"></p>
+          <button
+            class="app-functional--navy-button app-functional--navy-button--circle app-functional--navy-processbutton"
+            data-functional="no"
+          >
+            <svg viewBox="0 0 24 24" class="app-functional--navy-icon">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
