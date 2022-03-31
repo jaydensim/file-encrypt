@@ -5,8 +5,7 @@ import template from "./src/templates/main.html?raw";
 
 import { dropperHTML } from "./src/templates/useDropper";
 import { humanFileSize } from "./src/scripts/utils";
-
-import * as CryptoJS from "crypto-js";
+import { Crypt } from "./src/scripts/crypt";
 
 const qs = (el) => document.querySelector(el);
 const qa = (el) => document.querySelectorAll(el);
@@ -87,11 +86,8 @@ let handleFiles = (file) => {
       "..." +
       fileName.substr((maxLength / 2) * -1);
   }
-  if (
-    file.type == "encrypted/container-dump" ||
-    file.name.split(".").pop() == "ecd"
-  ) {
-    app.fileName = file.name.split(".").slice(0, -1).join(".");
+  if (file.type == "encrypted/container-dump" || file.name.endsWith(".ecd")) {
+    app.fileName = file.name.split(".ecd")[0];
     app.containerExtention = "";
     app.mode = "decrypt";
     icon = "archive";
@@ -177,47 +173,53 @@ df("input").addEventListener("input", (e) => {
 df("key").addEventListener("input", (e) => {
   app.currentKey = e.target.value;
   app.currentvalidity = df("input").validity.valid && df("key").validity.valid;
+  if (app.file) {
+    if (
+      app.file.type == "encrypted/container-dump" ||
+      app.file.name.endsWith(".ecd")
+    ) {
+      app.mode = "decrypt";
+    } else {
+      app.mode = "encrypt";
+    }
+  }
 });
 
 df("encrypt").addEventListener("click", () => {
   app.status = "Encrypting...";
   app.currentvalidity = false;
   app.appStatus = 2;
-  let reader = new FileReader();
-  reader.addEventListener("load", () => {
-    let wordArray = CryptoJS.lib.WordArray.create(reader.result);
-    let encrypted = CryptoJS.Rabbit.encrypt(
-      wordArray,
-      window.btoa(app.currentKey)
-    ).toString();
-    app.downloadPayload = new Blob([encrypted]);
+  let crypt = new Crypt(app.currentKey, app.file);
+  crypt.encrypt().then((encrypted) => {
+    app.downloadPayload = encrypted;
     handleDownload();
     app.mode = "download";
     app.appStatus = 1;
     app.status = "READY TO DOWNLOAD";
     app.currentvalidity = true;
   });
-  reader.readAsArrayBuffer(app.file);
 });
 df("decrypt").addEventListener("click", () => {
   app.status = "Decrypting...";
   app.currentvalidity = false;
   app.appStatus = 2;
-  let reader = new FileReader();
-  reader.addEventListener("load", () => {
-    let decrypted = CryptoJS.Rabbit.decrypt(
-      reader.result,
-      window.btoa(app.currentKey)
-    );
-    let typedArray = convertWordArrayToUint8Array(decrypted);
-    app.downloadPayload = new Blob([typedArray]);
-    handleDownload();
-    app.mode = "download";
-    app.appStatus = 1;
-    app.status = "READY TO DOWNLOAD";
-    app.currentvalidity = true;
-  });
-  reader.readAsArrayBuffer(app.file);
+  let crypt = new Crypt(app.currentKey, app.file);
+  crypt
+    .decrypt()
+    .then((encrypted) => {
+      app.downloadPayload = encrypted;
+      handleDownload();
+      app.mode = "download";
+      app.appStatus = 1;
+      app.status = "READY TO DOWNLOAD";
+      app.currentvalidity = true;
+    })
+    .catch(() => {
+      app.mode = "decrypt";
+      app.appStatus = 1;
+      app.status = "INCORRECT KEY";
+      app.currentvalidity = true;
+    });
 });
 df("download").addEventListener("click", handleDownload);
 
